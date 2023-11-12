@@ -68,7 +68,7 @@ public class UserDAO extends DAO {
 		}
 	}
 
-	public User getByID(int userId) throws PersistenciaDacException {
+	public User getByID(String userId) throws PersistenciaDacException {
 		EntityManager em = getEntityManager();
 		User resultado = null;
 		try {

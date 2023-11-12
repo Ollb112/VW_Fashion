@@ -6,8 +6,10 @@ import javax.swing.SwingUtilities;
 
 public class Janela extends JFrame {
 	private static Janela container;
+
 	private Janela() {
-		setSize(800,450);
+
+		setSize(800, 450);
 		setLayout(null);
 		setResizable(false);
 		setTitle("Vw Fashion");
@@ -20,8 +22,9 @@ public class Janela extends JFrame {
 		SwingUtilities.updateComponentTreeUI(Janela.getInstance());
 		getInstance().setContentPane(painel);
 	}
+
 	public static Janela getInstance() {
-		if(container == null)
+		if (container == null)
 			container = new Janela();
 		return container;
 	}
