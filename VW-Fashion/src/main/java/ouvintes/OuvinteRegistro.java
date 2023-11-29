@@ -1,13 +1,17 @@
 package ouvintes;
 
 import java.awt.event.ActionEvent;
+import chainOfRespon.*;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 import dao.PersistenciaDacException;
 import dao.UserDAO;
@@ -19,16 +23,17 @@ import view.Janela;
 import view.LoginPanel;
 
 public class OuvinteRegistro implements ActionListener{
-	private String nome;
-	private String email;
-	private String senha;
-	private String senhaConfirmar;
+	private JTextField nome;
+	private JTextField email;
+	private JPasswordField senha;
+	private JPasswordField senhaConfirmar;
 	private JFormattedTextField nascimento;
 	private JRadioButton cliente;
 	private JComboBox<String> sexosComboBox;
 
 	
-	public OuvinteRegistro(String nome, String email, String senha, String senhaConfirmar, JFormattedTextField nascimento, JRadioButton tipoUser, JComboBox<String> sexosComboBox) {
+	public OuvinteRegistro(JTextField nome, JTextField email, JPasswordField senha, JPasswordField senhaConfirmar, JFormattedTextField nascimento, JRadioButton tipoUser, JComboBox<String> sexosComboBox) {
+		
 		this.nome = nome;
 		this.email =email;
 		this.senha = senha;
@@ -52,8 +57,9 @@ public class OuvinteRegistro implements ActionListener{
 		}
 		
 		if(acao.equals("enviar")) {
-			user.setNome(nome);
-			user.setEmail(email);
+			user.setNome(nome.getText());
+			user.setEmail(email.getText());
+			user.setSenha(senha.getText());
 			String data = nascimento.getText();
 			Date nascimento = new Date();		
 			try {
@@ -62,19 +68,29 @@ public class OuvinteRegistro implements ActionListener{
 			} catch (java.text.ParseException e1) {
 				
 				e1.printStackTrace();
-			}			
-			
-			if(cliente.isSelected()) {
-				Janela.setPanel(new EnderecoPanel((Cliente)user));
+			}
+			if(senha.getText().equals(senhaConfirmar.getText())) {
+				if(cliente.isSelected()) {
+					System.out.println(user.getEmail());
+					BaseRegistro reg = new VerificadorEmail(new VerificadorSenha(new VerificadorNascimento(null)));
+					if(reg.processar(user) != false)
+						Janela.setPanel(new EnderecoPanel((Cliente)user));
+				}
+				else {
+					try {
+						dao.save(user);
+					} catch (PersistenciaDacException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
 			}
 			else {
-				try {
-					dao.save(user);
-				} catch (PersistenciaDacException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				JOptionPane.showMessageDialog(Janela.getInstance(), "As senhas devem ser iguais!");
 			}
+			
+		
 		}
 		else if(acao.equals("cancelar")) {
 			Janela.setPanel(new LoginPanel());

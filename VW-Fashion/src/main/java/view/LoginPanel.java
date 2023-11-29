@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import ouvintes.OuvinteLogin;
 import ouvintes.OuvinteMouse;
+import simpleFactory.FactoryMethod;
 
 public class LoginPanel extends JPanel {
 	private int x_Layout = 0;
@@ -81,7 +82,7 @@ public class LoginPanel extends JPanel {
 	}
 
 	public static void main(String[] args) {
-		Janela.setPanel(new LoginPanel());
+		Janela.setPanel(FactoryMethod.fabricar("login", null));
 
 	}
 

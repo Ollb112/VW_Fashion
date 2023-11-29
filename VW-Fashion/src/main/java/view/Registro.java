@@ -122,8 +122,8 @@ public class Registro extends JPanel {
 			MeuJButton botao = new MeuJButton(botoes[i], x, y, 85, 35);
 			botao.addMouseListener(new OuvinteMouse());
 			x += 130;
-			botao.addActionListener(new OuvinteRegistro(usuarioCampo.getText(), emailCampo.getText(),
-					senhaCampo.getText(), senhaCampoConfirmar.getText(), nascimentoCampo, cliente, sexosComboBox));
+			botao.addActionListener(new OuvinteRegistro(usuarioCampo, emailCampo,
+					senhaCampo, senhaCampoConfirmar, nascimentoCampo, cliente, sexosComboBox));
 			add(botao);
 		}
 
