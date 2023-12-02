@@ -1,10 +1,37 @@
 package model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_Produto")
 public class Produto {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_produto")
 	private long idProduto;
+	
+	@Column(name = "Preco")
 	private float preco;
+	
+	@Column(name = "Marca")
 	private String marca;
+	
+	@Column(name = "NomeProduto")
 	private String nomeProduto;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_add_ids")
+	private Pedido pedido;
 	
 	public long getId_produto() {
 		return idProduto;
@@ -29,6 +56,10 @@ public class Produto {
 	}
 	public void setNome_produto(String nome_produto) {
 		this.nomeProduto = nome_produto;
+	}
+	
+	public Produto() {
+		
 	}
 	
 

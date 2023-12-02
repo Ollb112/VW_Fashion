@@ -21,4 +21,9 @@ public class Fornecedor extends User{
 	public void setId_fornecedor(long id_fornecedor) {
 		this.idFornecedor = id_fornecedor;
 	}
+	
+	
+	public Fornecedor() {
+		
+	}
 }

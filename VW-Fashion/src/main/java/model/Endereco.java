@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id_Pedido")
 	private long idEndereco;
 	
 	@OneToOne(mappedBy = "endereco")

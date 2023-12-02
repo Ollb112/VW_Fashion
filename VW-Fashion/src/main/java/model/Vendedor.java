@@ -1,5 +1,10 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_Vendedor")
 public class Vendedor extends User {
 	private Float adicional;
 
@@ -9,5 +14,9 @@ public class Vendedor extends User {
 
 	public void setAdicional(Float adicional) {
 		this.adicional = adicional;
+	}
+	
+	public Vendedor() {
+		
 	}
 }
