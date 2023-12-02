@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import model.*;
 import view.*;
 
-public class FactoryMethod implements Painel{
+public class FactoryMethod {
 
 	public static JPanel fabricar(String tipo, User user) {
 		tipo = tipo.toUpperCase();
@@ -16,6 +16,8 @@ public class FactoryMethod implements Painel{
 			return new Registro();
 		case "ENDERECOPANEL":
 			return new EnderecoPanel((Cliente) user);
+		case "USERPANEL":
+			return new UserPanel(user);
 
 		default:
 			return null;

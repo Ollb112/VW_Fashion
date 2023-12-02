@@ -1,7 +1,6 @@
 package ouvintes;
 
 import java.awt.event.ActionEvent;
-import chainOfRespon.*;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +12,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import chainOfRespon.BaseRegistro;
+import chainOfRespon.VerificadorEmail;
+import chainOfRespon.VerificadorNascimento;
+import chainOfRespon.VerificadorSenha;
+import criptografia.SHA256;
 import dao.PersistenciaDacException;
 import dao.UserDAO;
 import model.Cliente;
@@ -59,7 +63,9 @@ public class OuvinteRegistro implements ActionListener{
 		if(acao.equals("enviar")) {
 			user.setNome(nome.getText());
 			user.setEmail(email.getText());
-			user.setSenha(senha.getText());
+			
+			String senhaCriptografada = SHA256.criptografar(senha.getText());
+			user.setSenha(senhaCriptografada);
 			String data = nascimento.getText();
 			Date nascimento = new Date();		
 			try {
@@ -69,15 +75,21 @@ public class OuvinteRegistro implements ActionListener{
 				
 				e1.printStackTrace();
 			}
+			
+			BaseRegistro reg = new VerificadorEmail(new VerificadorSenha(new VerificadorNascimento(null)));
+			
 			if(senha.getText().equals(senhaConfirmar.getText())) {
 				if(cliente.isSelected()) {
 					System.out.println(user.getEmail());
-					BaseRegistro reg = new VerificadorEmail(new VerificadorSenha(new VerificadorNascimento(null)));
-					if(reg.processar(user) != false)
+					
+					if(reg.processar(user) == true)
 						Janela.setPanel(new EnderecoPanel((Cliente)user));
 				}
 				else {
 					try {
+						if(reg.processar(user) == true) {
+							
+						}
 						dao.save(user);
 					} catch (PersistenciaDacException e1) {
 						// TODO Auto-generated catch block

@@ -1,5 +1,10 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_Fornecedor")
 public class Fornecedor extends User{
 	private String tipo_produto;
 	private long idFornecedor;

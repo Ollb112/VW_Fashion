@@ -6,43 +6,43 @@ import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import dao.PersistenciaDacException;
-import dao.UserDAO;
 import model.User;
+import proxySeg.LoginBase;
+import proxySeg.LoginProxy;
+import simpleFactory.FactoryMethod;
 import view.Janela;
 import view.Registro;
 
 public class OuvinteLogin implements ActionListener {
-	private String emailCampo;
-	private String senhaCampo;
+	private JTextField emailCampo;
+	private JPasswordField senhaCampo;
 
 	public OuvinteLogin(JTextField emailCampo, JPasswordField senhaCampo) {
-		this.emailCampo = emailCampo.getText();
+		this.emailCampo = emailCampo;
 
-		this.senhaCampo = senhaCampo.getText();
+		this.senhaCampo = senhaCampo;
 
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		String acao = e.getActionCommand();
-	
-		UserDAO dao = new UserDAO();
+		
+		LoginBase login = new LoginProxy();
+		
+
 
 		if (acao.equals("Entrar")) {
-			try {
-				User user = dao.getByID(emailCampo);
-				
-				if (user.getSenha().equals(senhaCampo)) {
-					System.out.println("Colocar logica de entrar");
-				}
-				else {
-					System.out.println("Senha errada");
-				}
-			} catch (PersistenciaDacException e1) {
-				
-				e1.printStackTrace();
+			User user = login.fazerLogin(emailCampo.getText(), senhaCampo.getText());
+			if(user != null){
+				Janela.setPanel(FactoryMethod.fabricar("userpanel", user));
 			}
+			else {
+				System.out.println("Usuario invalido");
+			}
+			
 		}
+		
+			
 		else if(acao.equals("Esqueci minha senha")) {
 			System.out.println("Falta programar a logica do esqueci senha");
 		}
