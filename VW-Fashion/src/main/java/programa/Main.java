@@ -1,12 +1,16 @@
 package programa;
 
-import dao.PersistenciaDacException;
-import dao.ProdutoDAO;
-import model.Produto;
+import observer.MensageiroObservador;
 
 public class Main {
 	
 	public static void main(String[] args) {
+		
+		//Janela.setPanel(FactoryMethod.fabricar("login", null));
+		
+		MensageiroObservador mensageiro = new MensageiroObservador();
+		mensageiro.notificarClientes("Promoção", "Promoção na VW-Fashion");
+		
 		//ProdutoDAO dao = new ProdutoDAO();
 		
 		//Produto produto = new Produto();

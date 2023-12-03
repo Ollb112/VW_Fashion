@@ -6,9 +6,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import observer.MensageiroBase;
+
 @Entity
 @Table(name = "TB_Cliente")
-public class Cliente extends User {
+public class Cliente extends User implements MensageiroBase{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_id")
@@ -23,6 +25,13 @@ public class Cliente extends User {
 	}
 	
 	public Cliente() {
+		
+	}
+
+	@Override
+	public void enviarEmail(String assunto, String mensagem) {
+		Email mensageiro = new Email();
+		mensageiro.enviarEmailParaCliente(getEmail(), assunto, mensagem);
 		
 	}
 

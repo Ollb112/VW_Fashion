@@ -14,9 +14,9 @@ public class FactoryMethod {
 			return new LoginPanel();
 		case "REGISTRO":
 			return new Registro();
-		case "ENDERECOPANEL":
+		case "ENDERECO":
 			return new EnderecoPanel((Cliente) user);
-		case "USERPANEL":
+		case "USER":
 			return new UserPanel(user);
 
 		default:

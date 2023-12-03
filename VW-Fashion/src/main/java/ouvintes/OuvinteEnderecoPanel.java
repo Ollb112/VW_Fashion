@@ -10,6 +10,8 @@ import dao.PersistenciaDacException;
 import dao.UserDAO;
 import model.Cliente;
 import model.Endereco;
+import observer.MensageiroBase;
+import observer.MensageiroObservador;
 import view.Janela;
 import view.LoginPanel;
 import view.Registro;
@@ -30,6 +32,8 @@ public class OuvinteEnderecoPanel implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		MensageiroObservador observador = new MensageiroObservador();
+		
 		String acao = e.getActionCommand();
 		UserDAO dao = new UserDAO();
 		if(acao.equals("enviar")) {
@@ -46,6 +50,7 @@ public class OuvinteEnderecoPanel implements ActionListener{
 			
 			try {
 				dao.save(cliente);
+				
 			} catch (PersistenciaDacException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
