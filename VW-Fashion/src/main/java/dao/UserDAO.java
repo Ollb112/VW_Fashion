@@ -95,6 +95,7 @@ public class UserDAO extends DAO {
 		} finally {
 			em.close();
 		}
+		
 		return resultado;
 	}
 }

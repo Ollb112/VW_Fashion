@@ -14,7 +14,7 @@ import observer.MensageiroBase;
 import observer.MensageiroObservador;
 import view.Janela;
 import view.LoginPanel;
-import view.Registro;
+import view.RegistroUser;
 
 public class OuvinteEnderecoPanel implements ActionListener{
 	private Cliente cliente;
@@ -60,7 +60,7 @@ public class OuvinteEnderecoPanel implements ActionListener{
 			
 		}
 		else if(acao.equals("cancelar")) {
-			Janela.setPanel(new Registro());
+			Janela.setPanel(new RegistroUser(null));
 		}
 		
 	}

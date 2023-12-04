@@ -11,7 +11,7 @@ import proxySeg.LoginBase;
 import proxySeg.LoginProxy;
 import simpleFactory.FactoryMethod;
 import view.Janela;
-import view.Registro;
+import view.RegistroUser;
 
 public class OuvinteLogin implements ActionListener {
 	private JTextField emailCampo;
@@ -34,7 +34,7 @@ public class OuvinteLogin implements ActionListener {
 		if (acao.equals("Entrar")) {
 			User user = login.fazerLogin(emailCampo.getText(), senhaCampo.getText());
 			if(user != null){
-				Janela.setPanel(FactoryMethod.fabricar("userpanel", user));
+				Janela.setPanel(FactoryMethod.fabricar("user", user));
 			}
 			else {
 				System.out.println("Usuario invalido");
@@ -47,7 +47,7 @@ public class OuvinteLogin implements ActionListener {
 			System.out.println("Falta programar a logica do esqueci senha");
 		}
 		else if(acao.equals("Criar uma conta")) {
-			Janela.setPanel(new Registro());
+			Janela.setPanel(new RegistroUser(null));
 		}
 
 	}

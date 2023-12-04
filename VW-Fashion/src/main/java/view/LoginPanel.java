@@ -31,7 +31,7 @@ public class LoginPanel extends JPanel {
 		addTextField();
 		addButton("Entrar", 357 + x_Layout, 200 + y_Layout, 80, 30);
 		addButton("Esqueci minha senha", 320 + x_Layout, 160 + y_Layout, 155, 16);
-		addButton("Criar uma conta", 335 + x_Layout, 180 + y_Layout, 125, 12);
+		
 	}
 
 	private void addTextField() {

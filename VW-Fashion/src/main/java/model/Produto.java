@@ -21,7 +21,7 @@ public class Produto {
 	private long idProduto;
 	
 	@Column(name = "Preco")
-	private float preco;
+	private int preco;
 	
 	@Column(name = "Marca")
 	private String marca;
@@ -33,6 +33,15 @@ public class Produto {
 	@JoinColumn(name = "fk_add_ids")
 	private Pedido pedido;
 	
+	@Column(name = "quantidade")
+	private int quantidade;
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 	public long getId_produto() {
 		return idProduto;
 	}
@@ -45,10 +54,10 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public float getPreco() {
+	public int getPreco() {
 		return preco;
 	}
-	public void setPreco(float preco) {
+	public void setPreco(int preco) {
 		this.preco = preco;
 	}
 	public String getNome_produto() {
