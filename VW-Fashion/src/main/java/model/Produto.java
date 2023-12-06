@@ -10,9 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import state.EstadoProduto;
+
 @Entity
 @Table(name = "TB_Produto")
 public class Produto {
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_estado")
+	 private EstadoProduto estado;
 	
 	
 	@Id
@@ -21,7 +27,7 @@ public class Produto {
 	private long idProduto;
 	
 	@Column(name = "Preco")
-	private int preco;
+	private float preco;
 	
 	@Column(name = "Marca")
 	private String marca;
@@ -29,19 +35,16 @@ public class Produto {
 	@Column(name = "NomeProduto")
 	private String nomeProduto;
 	
+	@Column(name = "Quantidade")
+	private int quantidade;
+	
+
+   
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_add_ids")
 	private Pedido pedido;
 	
-	@Column(name = "quantidade")
-	private int quantidade;
-	
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
 	public long getId_produto() {
 		return idProduto;
 	}
@@ -54,10 +57,10 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public int getPreco() {
+	public float getPreco() {
 		return preco;
 	}
-	public void setPreco(int preco) {
+	public void setPreco(float preco) {
 		this.preco = preco;
 	}
 	public String getNome_produto() {
@@ -67,9 +70,28 @@ public class Produto {
 		this.nomeProduto = nome_produto;
 	}
 	
+	public EstadoProduto getEstado() {
+		return estado;
+	}
+	public void setEstado(EstadoProduto estado) {
+		this.estado = estado;
+	}
+	
 	public Produto() {
 		
 	}
-	
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		if (quantidade > 5)
+			estado.setStatus("Disponivel");
+		else if (quantidade < 0 & quantidade != 0)
+			estado.setStatus("Poucas Unidades");
+		else
+			estado.setStatus("Indisponivel");
+		
+		this.quantidade = quantidade;
+	}
 
 }

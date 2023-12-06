@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.User;
-import ouvintes.OuvinteMouse;
-import ouvintes.OuvinteRegistroProduto;
+import controller.OuvinteMouse;
+import controller.OuvinteRegistroProduto;
 import personalizados.MeuJButton;
 
 public class RegistroProduto extends JPanel{
@@ -20,12 +20,12 @@ public class RegistroProduto extends JPanel{
 	private JTextField marca;
 	private JTextField quantidade;
 	private JTextField precoCampo;
-	private User user;
+
 	
 
-	public RegistroProduto(User user) {
+	public RegistroProduto() {
 		setLayout(null);
-		this.user = user;
+	
 
 		
 
@@ -93,11 +93,12 @@ public class RegistroProduto extends JPanel{
 		for (int i = 0; i < botoes.length; i++) {
 			MeuJButton botao = new MeuJButton(botoes[i], x, y, 85, 35);
 			botao.addMouseListener(new OuvinteMouse());
-			botao.addActionListener(new OuvinteRegistroProduto(nomeCampo, marca, quantidade, precoCampo, user));
+			botao.addActionListener(new OuvinteRegistroProduto(nomeCampo, marca, quantidade, precoCampo));
 			x += 130;
 			add(botao);
 		}
 
 	}
+
 
 }

@@ -4,7 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.User;
-import ouvintes.OuvinteUserPanel;
+import controller.OuvinteUserPanel;
 import personalizados.MeuJButton;
 
 public class UserPanel extends JPanel{
@@ -23,12 +23,12 @@ public class UserPanel extends JPanel{
 	public void addButton() {
 		MeuJButton sair = new MeuJButton(20 + x_Layout, 10 + y_Layout, 80, 30, "sair");
 		int x = 100;
-		sair.addActionListener(new OuvinteUserPanel(user));
+		sair.addActionListener(new OuvinteUserPanel());
 		String[] nomes = {"Caixa", "Registro", "Listar"};
 		
 		for(String n: nomes) {
 			MeuJButton botao = new MeuJButton(x + x_Layout, 300 + y_Layout, 130, 30, n);
-			botao.addActionListener(new OuvinteUserPanel(user));
+			botao.addActionListener(new OuvinteUserPanel());
 			x += 200;
 			add(botao);
 		}

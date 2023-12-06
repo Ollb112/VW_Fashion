@@ -6,26 +6,24 @@ import org.apache.commons.mail.SimpleEmail;
 
 public class Email {
 	@SuppressWarnings("deprecation")
-	public void  enviarEmailParaCliente(String endereco,String assunto, String menssagem) {
-	SimpleEmail email = new SimpleEmail(); 
+    public boolean enviarEmailParaCliente(String endereco, String assunto, String mensagem) {
+        SimpleEmail email = new SimpleEmail();
 
-    try {  
-    email.setDebug(true);  //modo debug
-    email.setHostName("smtp.gmail.com");  
-    email.setAuthentication("naoeosedex@gmail.com","wunqwucukceahrpt");  
-    email.setSSL(true);  
-    email.addTo(endereco); //destinatario_email 
-    email.setFrom(endereco); //destinatario
-    email.setSubject(assunto);  
-    email.setMsg(menssagem);  
-    email.send();  
+        try {
+            //email.setDebug(true);  // Modo debug
+            email.setHostName("smtp.gmail.com");
+            email.setAuthentication("naoeosedex@gmail.com","wunqwucukceahrpt");
+            email.setSSLOnConnect(true);
+            email.addTo(endereco); // Destinatário
+            email.setFrom("naoresponda@gmail.com"); // endereço de email
+            email.setSubject(assunto);
+            email.setMsg(mensagem);
+            email.send();
+            return true; 
 
-    } catch (EmailException ex) {  
-
-    System.out.println("erro");  
-    	}
-	}
-	public static void main(String[] a) {
-		//Email.enviarEmailParaCliente("oliverlobo10@gmail.com", "Testando","teste1");
-	}
+        } catch (EmailException ex) {
+            return false; 
+        }
+    }
 }
+

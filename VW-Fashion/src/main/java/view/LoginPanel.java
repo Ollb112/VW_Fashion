@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import ouvintes.OuvinteLogin;
-import ouvintes.OuvinteMouse;
+import controller.OuvinteLogin;
+import controller.OuvinteMouse;
 import simpleFactory.FactoryMethod;
 
 public class LoginPanel extends JPanel {

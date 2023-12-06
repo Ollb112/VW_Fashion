@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import controller.OuvinteEnderecoPanel;
 import model.Cliente;
-import ouvintes.OuvinteEnderecoPanel;
-import ouvintes.OuvinteMouse;
+import controller.OuvinteMouse;
 import personalizados.MeuJButton;
 
 public class EnderecoPanel extends JPanel {

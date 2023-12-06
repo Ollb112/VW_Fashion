@@ -18,22 +18,24 @@ public class FactoryMethod {
 		tipo = tipo.toUpperCase();
 		switch (tipo) {
 		case "LOGIN":
+			User.setUser(null);
 			return new LoginPanel();
 		case "REGISTROUSER":
-			return new RegistroUser(user);
+			return new RegistroUser();
 		case "REGISTROPRODUTO":
-			return new RegistroProduto(user);
+			return new RegistroProduto();
 		case "ENDERECO":
 			return new EnderecoPanel((Cliente) user);
 		case "USER":
-			return new UserPanel(user);
+			if(User.getUser() == null)
+				User.setUser(user);
+			return new UserPanel(User.getUser());
 			
 		case "CAIXA":
 			return new Painel_Caixa();
 			
 		case "LISTAGEM":
 			return new Painel_listagem();
-
 		default:
 			return null;
 

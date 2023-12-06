@@ -17,6 +17,16 @@ import javax.persistence.TemporalType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User implements Serializable {
 	private static final long serialVersionUID = -6518853480190451215L;
+	
+	private static User user;
+	
+	public static User getUser() {
+		return user;
+	}
+	
+	public static void setUser(User novo) {
+		user = novo;
+	}
 
 	@Id
 	@Column(name = "ID_Email")

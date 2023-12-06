@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import ouvintes.OuvinteMouse;
+import controller.OuvinteMouse;
 
 public class MeuJButton extends JButton{
 	

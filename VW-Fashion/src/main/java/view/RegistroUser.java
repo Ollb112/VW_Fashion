@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import model.Administrador;
 import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
@@ -13,9 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import model.User;
-import ouvintes.OuvinteMouse;
-import ouvintes.OuvinteRegistroUser;
+import controller.OuvinteMouse;
+import controller.OuvinteRegistroUser;
 import personalizados.MeuJButton;
+import simpleFactory.FactoryMethod;
 
 public class RegistroUser extends JPanel {
 	int x_Layout = 0;
@@ -28,23 +30,25 @@ public class RegistroUser extends JPanel {
 	private JPasswordField senhaCampoConfirmar;
 	private JRadioButton cliente;
 	private JRadioButton fornecedor;
-
-	public RegistroUser(User user) {
+	private JRadioButton vendedor;
+	
+	
+	public RegistroUser() {
+		
 		setLayout(null);
 
 		
 		addLabel();
 		adicionarTextField();
-		adicionarJButton();
 		
-		if(user == null) {
+		
+		if(User.getUser() != null) {
 			adicionarRadioButtons();
 		}
-		else {
-			
-		}
+		adicionarJButton();
 
 	}
+	
 
 	public void adicionarRadioButtons() {
 		cliente = new JRadioButton("Cliente", true);
@@ -54,6 +58,15 @@ public class RegistroUser extends JPanel {
 		fornecedor.setBounds(330, 230, 100, 30);
 
 		ButtonGroup grupo = new ButtonGroup();
+		
+		if(User.getUser() instanceof Administrador) {
+			vendedor = new JRadioButton("Vendedor", false);
+			vendedor.setBounds(430, 230, 100, 30);
+			grupo.add(vendedor);
+			add(vendedor);
+			
+		}
+		
 		grupo.add(cliente);
 		grupo.add(fornecedor);
 
@@ -119,10 +132,11 @@ public class RegistroUser extends JPanel {
 			botao.addMouseListener(new OuvinteMouse());
 			x += 130;
 			botao.addActionListener(new OuvinteRegistroUser(usuarioCampo, emailCampo,
-					senhaCampo, senhaCampoConfirmar, nascimentoCampo, cliente));
+					senhaCampo, senhaCampoConfirmar, nascimentoCampo, cliente, fornecedor, vendedor));
 			add(botao);
 		}
 
 	}
+	
 
 }

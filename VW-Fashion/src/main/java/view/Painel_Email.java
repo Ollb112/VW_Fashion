@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import ouvintes.Ouvinte_Painel_Email;
+import controller.Ouvinte_Painel_Email;
 import personalizados.MeuJButton;
 
 public class Painel_Email extends JPanel{

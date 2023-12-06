@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.geom.Line2D.Float;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
