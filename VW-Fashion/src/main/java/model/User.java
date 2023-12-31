@@ -18,6 +18,9 @@ import javax.persistence.TemporalType;
 public abstract class User implements Serializable {
 	private static final long serialVersionUID = -6518853480190451215L;
 	
+
+//Mudar esquema de classes, ex (Staff com vendedor e admin) e user(cliente e fornecedor)
+
 	private static User user;
 	
 	public static User getUser() {
