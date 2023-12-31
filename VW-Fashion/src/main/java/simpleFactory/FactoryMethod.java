@@ -16,6 +16,7 @@ import view.RegistroProduto;
 import view.RegistroUser;
 import view.UserPanel;
 
+//Mudar nome de classe pra simple factory
 public class FactoryMethod {
 
 	public static JPanel fabricar(String tipo, User user) {
